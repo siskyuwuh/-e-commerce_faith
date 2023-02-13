@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'FAITH') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Lavarel') }}
+                    {{ config('app.name', 'FAITH') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -37,7 +37,9 @@
 
                         @cannot('AdminSession')
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                                <a class="nav-link {{ request()->is('/home') ? 'active' : '' }}"
+                                    {{ request()->is('/home') ? 'aria-current="page"' : '' }}
+                                    href="{{ url('/home') }}">{{ __('Home') }}</a>
                             </li>
                         @endcannot
                         @can('AdminSession')
@@ -49,8 +51,8 @@
                                     href="{{ route('admin.home') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/product') ? 'active' : '' }}"
-                                    {{ request()->is('admin/product/index') ? 'aria-current="page"' : '' }}
+                                <a class="nav-link {{ request()->is('admin/product') || request()->is('admin/product/create') ? 'active' : '' }}"
+                                    {{ request()->is('admin/product') || request()->is('admin/product/create') ? 'aria-current="page"' : '' }}
                                     href="{{ route('admin.product.table') }}">{{ __('Product') }}</a>
                             </li>
                             {{-- <li class="nav-item">

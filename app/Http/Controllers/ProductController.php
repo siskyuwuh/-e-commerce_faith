@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class ProductController extends Controller
 {
@@ -33,6 +34,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('admin.product.create');
     }
 
     /**
@@ -44,7 +46,21 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-
+        $this->validate($request, [
+            'product_name' => ['required', 'string', 'max:255'],
+            'product_desc' => ['required', 'string'],
+            'product_price' => ['required', 'integer'],
+            'product_stock' => ['required', 'integer'],
+        ]);
+        Product::create([
+            'product_name' => $request->product_name,
+            'product_desc' => $request->product_desc,
+            'product_price' => $request->product_price,
+            'product_stock' => $request->product_stock,
+        ]);
+        return redirect()->route('admin.product.table')->with([
+            'success' => 'Data berhasil disimpan'
+        ]);
     }
 
     /**

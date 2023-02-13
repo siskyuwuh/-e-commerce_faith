@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-3">
+            <div class="col-md-8">
+                <a href="{{ route('admin.product.create') }}">
+                    <button class="btn btn-primary">{{ __('Tambah') }}</button>
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3">
             <div class="col-md-8">
                 <table class="table">
                     <thead>
