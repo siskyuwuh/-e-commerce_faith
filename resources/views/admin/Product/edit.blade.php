@@ -15,9 +15,9 @@
                     <div class="card-header">{{ __('Edit Data Barang') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.product.edit') }}">
+                        <form method="POST" action="{{ route('product.update', $product->id) }}">
                             @csrf
-
+                            @method('PUT')
                             <div class="row mb-3">
                                 <label for="product_name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Nama Produk') }}</label>
@@ -25,7 +25,8 @@
                                 <div class="col-md-6">
                                     <input id="product_name" type="text"
                                         class="form-control @error('product_name') is-invalid @enderror" name="product_name"
-                                        value="{{ old('product_name') }}" required autocomplete="product_name" autofocus>
+                                        value="{{ old('product_name', $product->product_name) }}" required
+                                        autocomplete="product_name" autofocus>
 
                                     @error('product_name')
                                         <span class="invalid-feedback" role="alert">
@@ -40,10 +41,10 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Deskripsi Produk') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="product_desc" class="form-control @error('product_desc') is-invalid @enderror" name="product_desc"
-                                        value="{{ old('product_desc') }}" required autocomplete="product_desc" autofocus></textarea>
+                                    <textarea id="product_desc" class="form-control @error('product_desc', $product->product_desc) is-invalid @enderror"
+                                        name="product_desc" required autocomplete="product_desc" autofocus>{{ old('product_desc', $product->product_desc) }}</textarea>
 
-                                    @error('product_desc')
+                                    @error('product_desc', $product->product_desc)
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -59,8 +60,8 @@
                                 <div class="col-md-6">
                                     <input id="product_price" type="number"
                                         class="form-control @error('product_price') is-invalid @enderror"
-                                        name="product_price" value="{{ old('product_price') }}" required
-                                        autocomplete="product_price">
+                                        name="product_price" value="{{ old('product_price', $product->product_price) }}"
+                                        required autocomplete="product_price">
 
                                     @error('product_price')
                                         <span class="invalid-feedback" role="alert">
@@ -76,8 +77,8 @@
                                 <div class="col-md-6">
                                     <input id="product_stock" type="number"
                                         class="form-control @error('product_stock') is-invalid @enderror"
-                                        name="product_stock" value="{{ old('product_stock') }}" required
-                                        autocomplete="product_stock">
+                                        name="product_stock" value="{{ old('product_stock', $product->product_stock) }}"
+                                        required autocomplete="product_stock">
 
                                     @error('product_stock')
                                         <span class="invalid-feedback" role="alert">
@@ -93,7 +94,7 @@
                                         {{ __('Reset') }}
                                     </button>
                                     <button type="submit" class="btn btn-dark ms-1">
-                                        {{ __('Register') }}
+                                        {{ __('Daftar Ulang') }}
                                     </button>
                                 </div>
                                 {{-- <div class="col-md-6 offset-md-4">

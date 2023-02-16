@@ -22,7 +22,9 @@ class ProductController extends Controller
         //
         // $products = Product::latest()->paginate(5)->withQueryString();
         return view('admin.product.index', [
-            'products' => Product::latest()->paginate(5)->withQueryString(),
+            'products' => Product::latest()
+                ->paginate(5)
+                ->withQueryString(),
         ]);
     }
 
@@ -58,9 +60,11 @@ class ProductController extends Controller
             'product_price' => $request->product_price,
             'product_stock' => $request->product_stock,
         ]);
-        return redirect()->route('admin.product.table')->with([
-            'success' => 'Data berhasil disimpan'
-        ]);
+        return redirect()
+            ->route('product.index')
+            ->with([
+                'success' => 'Data berhasil disimpan',
+            ]);
     }
 
     /**
@@ -69,11 +73,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product, $id)
+    public function show($id)
     {
         return view('admin.product.show', [
             'title' => 'ahhahaha',
-            'products' => $product->where("id", $id)->get(),
+            'products' => Product::where('id', $id)->get(),
         ]);
     }
 
@@ -83,9 +87,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        return view('admin.product.edit', [
+            'title' => 'Edit Data Barang',
+            'product' => Product::findOrFail($id),
+        ]);
     }
 
     /**
@@ -95,9 +102,32 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'product_name' => ['required', 'string', 'max:255'],
+            'product_desc' => ['required', 'string', 'min:50'],
+            'product_price' => ['required', 'integer'],
+            'product_stock' => ['required', 'integer'],
+        ]);
+
+        // $product = Product::where('id', $id)->get();
+
+        // get $id
+        $product = Product::findOrFail($id);
+
+        $product->update([
+            'product_name' => $request->product_name,
+            'product_desc' => $request->product_desc,
+            'product_price' => $request->product_price,
+            'product_stock' => $request->product_stock,
+        ]);
+        return redirect()
+            ->route('product.index')
+            ->with([
+                'success' => 'Data berhasil disimpan',
+            ]);
     }
 
     /**
@@ -106,8 +136,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->route('product.index')->with([
+            'success' => 'Data Berhasil di Hapus',
+        ]);
     }
 }

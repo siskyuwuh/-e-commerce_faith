@@ -15,7 +15,7 @@
                     <div class="card-header">{{ __('Register Barang') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.product.store') }}">
+                        <form method="POST" action="{{ route('product.store') }}">
                             @csrf
 
                             <div class="row mb-3">

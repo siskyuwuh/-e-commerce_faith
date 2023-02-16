@@ -53,17 +53,17 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/product') || request()->is('admin/product/create') ? 'active' : '' }}"
                                     {{ request()->is('admin/product') || request()->is('admin/product/create') ? 'aria-current="page"' : '' }}
-                                    href="{{ route('admin.product.table') }}">{{ __('Product') }}</a>
+                                    href="{{ route('product.index') }}">{{ __('Product') }}</a>
                             </li>
                             {{-- <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/product/index') ? 'active' : '' }}"
                                     {{ request()->is('admin/product/index') ? 'aria-current="page"' : '' }}
-                                    href="{{ route('admin.product.table') }}">{{ __('Product') }}</a>
+                                    href="{{ route('product.index') }}">{{ __('Product') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/product/index') ? 'active' : '' }}"
                                     {{ request()->is('admin/product/index') ? 'aria-current="page"' : '' }}
-                                    href="{{ route('admin.product.table') }}">{{ __('Product') }}</a>
+                                    href="{{ route('product.index') }}">{{ __('Product') }}</a>
                             </li> --}}
                         @endcan
 
