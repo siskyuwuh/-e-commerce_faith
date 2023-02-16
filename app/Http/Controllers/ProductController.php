@@ -69,10 +69,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $id)
     {
-        //
-        // DB::table('')
+        return view('admin.product.show', [
+            'title' => 'ahhahaha',
+            'products' => $product->where("id", $id)->get(),
+        ]);
     }
 
     /**

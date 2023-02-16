@@ -30,7 +30,7 @@ Diameter : 13 cm
 - Licensed Certificate
 
 - Nylon Materials',
-                'product_price' => 4500000,
+                'product_price' => 450000,
                 'product_stock' => 50,
             ],
             [
