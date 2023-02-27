@@ -15,6 +15,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- Scripts -->
+    @if (request()->is('/'))
+        <link rel="stylesheet" href="carousel.css">
+    @else
+    @endif
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -37,9 +41,14 @@
 
                         @cannot('AdminSession')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('/home') ? 'active' : '' }}"
-                                    {{ request()->is('/home') ? 'aria-current="page"' : '' }}
-                                    href="{{ url('/home') }}">{{ __('Home') }}</a>
+                                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
+                                    {{ request()->is('/') ? 'aria-current="page"' : '' }}
+                                    href="{{ url('/') }}">{{ __('Home') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->is('shop') ? 'active' : '' }}"
+                                    {{ request()->is('shop') ? 'aria-current="page"' : '' }}
+                                    href="{{ url('/shop') }}">{{ __('Shop') }}</a>
                             </li>
                         @endcannot
                         @can('AdminSession')
@@ -109,7 +118,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
     </div>

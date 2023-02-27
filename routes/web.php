@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,13 +18,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/shop/{name}/show', [ShopController::class, 'show'])->name('detail');
+
+
+// Route::middleware('guest')->group(function () {
+
+//     Route::get('/home', [HomeController::class, 'index'])->name('home');
+// });
+
 /*------------------------------------------
 --------------------------------------------
 All Normal Users Routes List
@@ -31,7 +41,8 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:customer'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/shop/{name}/checkout', [ShopController::class, 'checkout'])->name('checkout');
+    // Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
 /*------------------------------------------
