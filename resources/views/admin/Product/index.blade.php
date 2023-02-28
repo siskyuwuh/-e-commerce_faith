@@ -14,6 +14,7 @@
                 <table class="table">
                     <thead>
                         <tr class="table-dark">
+                            <th scope="col">Code</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Price <small>/unit</small></th>
@@ -25,6 +26,7 @@
                         @foreach ($products as $product)
                             <tr>
 
+                                <td>{{ $product->product_code }}</td>
                                 <td>{{ $product->product_name }}</td>
                                 <td>{{ $product->product_desc }}</td>
                                 <td>Rp{{ number_format($product->product_price, 2) }}</td>

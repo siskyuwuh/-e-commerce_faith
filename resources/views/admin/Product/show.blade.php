@@ -16,6 +16,7 @@
                     <div class="card-body">
                         @foreach ($products as $item)
 
+                        <h4>{{ $item->product_code }}</h4>
                         <h4>{{ $item->product_name }}</h4>
                         <p>Rp {{ number_format($item->product_price, 2) }}</p>
                         <p>{{ $item->product_desc }}</p>

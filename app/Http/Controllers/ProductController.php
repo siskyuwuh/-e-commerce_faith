@@ -50,12 +50,14 @@ class ProductController extends Controller
         //
         $this->validate($request, [
             'product_name' => ['required', 'string', 'max:255'],
+            'product_code' => ['required', 'string', 'max:7'],
             'product_desc' => ['required', 'string'],
             'product_price' => ['required', 'integer'],
             'product_stock' => ['required', 'integer'],
         ]);
         Product::create([
             'product_name' => $request->product_name,
+            'product_code' => $request->product_code,
             'product_desc' => $request->product_desc,
             'product_price' => $request->product_price,
             'product_stock' => $request->product_stock,
@@ -107,6 +109,7 @@ class ProductController extends Controller
         //
         $this->validate($request, [
             'product_name' => ['required', 'string', 'max:255'],
+            'product_code' => ['required', 'string', 'max:7'],
             'product_desc' => ['required', 'string', 'min:50'],
             'product_price' => ['required', 'integer'],
             'product_stock' => ['required', 'integer'],
@@ -119,6 +122,7 @@ class ProductController extends Controller
 
         $product->update([
             'product_name' => $request->product_name,
+            'product_code' => $request->product_code,
             'product_desc' => $request->product_desc,
             'product_price' => $request->product_price,
             'product_stock' => $request->product_stock,

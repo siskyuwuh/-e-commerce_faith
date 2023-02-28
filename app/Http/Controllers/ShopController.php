@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Request\StoreRequest;
+use App\Request\OrderRequest;
 use App\Models\Product as Item;
+use App\Models\Order;
 
 class ShopController extends Controller
 {
@@ -17,9 +20,7 @@ class ShopController extends Controller
         //
         return view('shop.catalog', [
             'title' => 'Shop',
-            'items' => Item::latest()
-                ->paginate(9)
-                ->withQueryString(),
+            'items' => Item::latest(),
 
         ]);
     }
@@ -51,20 +52,31 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($product_code)
     {
         //
         return view('shop.detail', [
-            'item' => Item::where('product_name', $name)->get(),
+            'item' => Item::where('product_code', $product_code)->get(),
         ]);
     }
 
-    public function checkout($id)
+    public function checkout($product_code)
     {
         return view('shop.checkout', [
             'title' => 'Checkout',
-            'item' => Item::find($id),
+            'item' => Item::find($product_code),
 
+        ]);
+    }
+
+    public function order(OrderRequest $request, Order $order) {
+
+        //
+        $dataValid = $this->validate($request, [
+            'product_name' => ['required', 'string', 'max:255'],
+            'product_desc' => ['required', 'string', 'min:50'],
+            'product_price' => ['required', 'integer'],
+            'product_stock' => ['required', 'integer'],
         ]);
     }
 

@@ -20,6 +20,7 @@ class CreateProductSeeder extends Seeder
             [
 
                 'product_name' => 'EVANGELION Tactital Totebag',
+                'product_code' => 'EVA-501',
                 'product_desc' => '
 Size :
 Width : 38 cm
@@ -54,6 +55,7 @@ Double Extra Large : 73 CM x 62 CM (sleeve 75)
             [
 
                 'product_name' => 'Faith Industries Coach Jacket "Mad Dog of Shimano"',
+                'product_code' => 'YKZ-202',
                 'product_desc' => 'M : 67 CM x 56 CM (sleeve 69)',
                 'product_price' => 250000,
                 'product_stock' => 50,
@@ -61,6 +63,7 @@ Double Extra Large : 73 CM x 62 CM (sleeve 75)
             [
 
                 'product_name' => 'Faith Industries Pullover Hoodie "Dragon of Dojima"',
+                'product_code' => 'YKZ-301',
                 'product_desc' => '
                 Large : 69 CM x 58 CM
 Extra Large : 71 CM x 60 CM',
@@ -70,6 +73,7 @@ Extra Large : 71 CM x 60 CM',
             [
 
                 'product_name' => 'EVANGELION Oversized "Unit-01" T-shirt',
+                'product_code' => 'EVA-101',
                 'product_desc' => '
                 Sizing Measurement Oversize tshirt :
 (Width x Length)
@@ -90,6 +94,7 @@ Double Extra Large : 62 cm x 76 cm
             [
 
                 'product_name' => 'Faith Industries Sukajan Jacket "Mad Dog of Shimano"',
+                'product_code' => 'YKZ-402',
                 'product_desc' => '
                 Sizing Measurement Sukajan :
 (Length - Width - Sleeve)
@@ -110,6 +115,7 @@ Double Xtra Large 79 cm x 62 m x 63 cm
             [
 
                 'product_name' => 'Faith Industries Varsity Jacket "Dragon of Dojima"',
+                'product_code' => 'YKZ-501',
                 'product_desc' => '
                 Sizing Measurement Varsity :
 (Length - Width - Sleeve)
@@ -129,6 +135,7 @@ Double Xtra Large 79 cm x 62 m x 63 cm
             [
 
                 'product_name' =>  'Faith Industries Tshirt "Chen The Holungday"',
+                'product_code' => 'ARK-101',
                 'product_desc' => 'Sizing Measurement Oversize :
 (Length x Width)
 
@@ -147,6 +154,7 @@ XXL : 79 cm 63 cm
             [
 
                 'product_name' => 'Faith Industries Tshirt "SilverAsh"',
+                'product_code' => 'ARK-102',
                 'product_desc' => '
                 Sizing Measurement Oversize :
 (Length x Width)
@@ -166,6 +174,7 @@ XXL : 79 cm 63 cm
             [
 
                 'product_name' => 'Faith Industries Crewneck "Awaken Akira"',
+                'product_code' => 'AKR-202',
                 'product_desc' => '
 Sizing Measurement:
 Medium : 67 CM x 56 CM (sleeve 69)

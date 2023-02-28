@@ -35,6 +35,23 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="product_name"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Kode Produk') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="product_code" type="text"
+                                        class="form-control @error('product_code') is-invalid @enderror" name="product_code"
+                                        value="{{ old('product_code', $product->product_code) }}" required
+                                        autocomplete="product_code" autofocus>
+
+                                    @error('product_code')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="row mb-3">
                                 <label for="product_desc"

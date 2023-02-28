@@ -23,7 +23,7 @@
                                 <p>{{ $detail->product_stock }}</p>
                             </div>
                         </div>
-                        <a href="{{ route('checkout', $detail->id) }}"
+                        <a href="{{ route('checkout', $detail->product_code) }}"
                             class="btn btn-dark btn-lg rounded-0 rounded-bottom text-center">
                             Beli
                         </a>
