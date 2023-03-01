@@ -23,9 +23,9 @@ class CreateUserSeeder extends Seeder
         //
 
         $users = [
-            'name' => Str::random(10),
-            'username' => Str::random(10),
-            'email' => Str::random(10) . '@gmail.com',
+            'name' => 'Siska Leontyne',
+            'username' => 'siskuy',
+            'email' => 'siskyuwuh2434@gmail.com',
             'role' => 'customer',
             'password' => Hash::make('password'),
         ];

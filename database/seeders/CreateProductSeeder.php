@@ -37,8 +37,8 @@ Diameter : 13 cm
             [
 
                 'product_name' => 'Faith Industries Crewneck "Joker"',
-                'product_desc' => '
-                Sizing Measurement:
+                'product_code' => 'JKR-201',
+                'product_desc' => 'Sizing Measurement:
 
 Medium : 67 CM x 56 CM (sleeve 69)
 Large : 69 CM x 58 CM (sleeve 71)
@@ -74,8 +74,7 @@ Extra Large : 71 CM x 60 CM',
 
                 'product_name' => 'EVANGELION Oversized "Unit-01" T-shirt',
                 'product_code' => 'EVA-101',
-                'product_desc' => '
-                Sizing Measurement Oversize tshirt :
+                'product_desc' => 'Sizing Measurement Oversize tshirt :
 (Width x Length)
 
 Medium : 55 cm x 70 cm
@@ -95,8 +94,7 @@ Double Extra Large : 62 cm x 76 cm
 
                 'product_name' => 'Faith Industries Sukajan Jacket "Mad Dog of Shimano"',
                 'product_code' => 'YKZ-402',
-                'product_desc' => '
-                Sizing Measurement Sukajan :
+                'product_desc' => 'Sizing Measurement Sukajan :
 (Length - Width - Sleeve)
 
 Medium : 73 cm x 56 cm x 62 cm
@@ -116,8 +114,7 @@ Double Xtra Large 79 cm x 62 m x 63 cm
 
                 'product_name' => 'Faith Industries Varsity Jacket "Dragon of Dojima"',
                 'product_code' => 'YKZ-501',
-                'product_desc' => '
-                Sizing Measurement Varsity :
+                'product_desc' => 'Sizing Measurement Varsity :
 (Length - Width - Sleeve)
 
 Medium : 73 cm x 56 cm x 62 cm
@@ -155,8 +152,7 @@ XXL : 79 cm 63 cm
 
                 'product_name' => 'Faith Industries Tshirt "SilverAsh"',
                 'product_code' => 'ARK-102',
-                'product_desc' => '
-                Sizing Measurement Oversize :
+                'product_desc' => 'Sizing Measurement Oversize :
 (Length x Width)
 
 M : 73 cm x 56 cm

@@ -62,7 +62,7 @@ class LoginController extends Controller
                 return redirect()->route('admin.home');
             } else if (auth()->user()->role == 'customer') {
 
-                return redirect()->intended($this->redirectPath('/home'));
+                return redirect()->intended($this->redirectPath('/'));
             }
         } else {
             return back()->withErrors([

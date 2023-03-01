@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
-use App\Request\StoreRequest;
-use App\Request\OrderRequest;
 use App\Models\Product as Item;
 use App\Models\Order;
+use App\Request\StoreRequest;
+use App\Http\Requests\OrderProductRequest;
+use Illuminate\Support\Str;
 
 class ShopController extends Controller
 {
@@ -20,7 +21,7 @@ class ShopController extends Controller
         //
         return view('shop.catalog', [
             'title' => 'Shop',
-            'items' => Item::latest(),
+            'items' => Item::latest()->paginate(8)->withQueryString(),
 
         ]);
     }
@@ -41,10 +42,10 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+
+    // }
 
     /**
      * Display the specified resource.
@@ -64,19 +65,46 @@ class ShopController extends Controller
     {
         return view('shop.checkout', [
             'title' => 'Checkout',
-            'item' => Item::find($product_code),
+            'item' => Item::where('product_code', $product_code)->get(),
 
         ]);
     }
 
-    public function order(OrderRequest $request, Order $order) {
+    public function order(OrderProductRequest $request, Order $order, Item $item, $product_code)
+    {
 
-        //
-        $dataValid = $this->validate($request, [
-            'product_name' => ['required', 'string', 'max:255'],
-            'product_desc' => ['required', 'string', 'min:50'],
-            'product_price' => ['required', 'integer'],
-            'product_stock' => ['required', 'integer'],
+        $basePrice = $item->where('product_code', $product_code)->get();
+
+        $this->validate($request, [
+            'product_code' => ['required'],
+            'order_note' => ['required', 'string'],
+            'address' => ['required'],
+        ]);
+
+        // $validatedData['uuid_code'] = Str::orderedUuid();
+        // $validatedData['total_harga'] = $basePrice[0]->harga * $validatedData['total_harga'];
+        // $validatedData['status'] = 'waitConfirmation';
+
+        Order::create([
+            'product_code' => $request->product_code,
+            'uuid_code' => Str::orderedUuid(),
+            'order_note' => $request->order_note,
+            'address' => $request->address,
+            'total_harga' => $basePrice[0]->product_price,
+            'status' => 'waitConfirmation',
+        ]);
+
+        return redirect()->route('shop')->with(
+            'success',
+            'Your order has been added'
+        );
+    }
+
+    public function adminCheckOrder(Order $order)
+    {
+        return view('admin.CheckOrder.index', [
+            'title' => 'Check Order',
+            'orders' => $order->latest()->paginate(8)->withQueryString(),
         ]);
     }
 
@@ -126,10 +154,10 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+
+    // }
 
     /**
      * Remove the specified resource from storage.

@@ -15,82 +15,93 @@
                     <div class="card-header">{{ __('Checkout') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{-- route('product.update',$item->id) --}}">
+                        <form method="POST" action="/shop/{{ $item[0]->product_code }}/order">
                             @csrf
-                            <div class="row mb-3">
-                                <label for="product_name" class="col-md-2 col-form-label">{{ __('Nama Produk') }}</label>
+                            <div class="row mb-4">
 
-                                <div class="col-md-10">
-                                    <input id="product_name" type="text" class="form-control" name="product_name"
-                                        value="{{ old('product_name', $item->product_name) }}" disabled readonly
-                                        autocomplete="product_name">
+                                {{-- Kolom Form --}}
+
+                                <div class="col-8">
+                                    {{-- Nama Produk --}}
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-2 col-form-label">{{ __('Nama Produk') }}</label>
+
+                                        <div class="col-md-10">
+                                            <p class="form-control">{{ $item[0]->product_name }}</p>
+                                        </div>
+                                    </div>
+
+                                    {{-- Note Order --}}
+
+                                    <div class="row mb-3">
+                                        <label for="order_note"
+                                            class="col-md-2 col-form-label">{{ __('Catatan Produk') }}</label>
+
+                                        <div class="col-md-10">
+                                            <textarea id="order_note" class="form-control" name="order_note" required autocomplete="order_note" autofocus></textarea>
+                                        </div>
+                                    </div>
+
+                                    {{-- Alamat --}}
+
+                                    <div class="row mb-3">
+                                        <label for="address" class="col-md-2 col-form-label">{{ __('Alamat') }}</label>
+
+                                        <div class="col-md-10">
+                                            <textarea id="address" class="form-control" name="address" required autocomplete="address" autofocus></textarea>
+                                        </div>
+                                    </div>
+
+                                    {{-- Harga --}}
+
+                                    <div class="row mb-3">
+                                        <label for="product_price"
+                                            class="col-md-2 col-form-label">{{ __('Total Harga') }}</label>
+
+                                        <div class="col-md-10">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <span
+                                                    class="form-control">{{ number_format($item[0]->product_price) }}</span>
+                                            </div>
+                                            {{-- <input id="harga_total" type="hidden" value="{{ $item[0]->product_price }}"
+                                                required autocomplete="harga_total" name="harga_total"> --}}
+                                        </div>
+                                    </div>
+
+                                    {{-- Kode Produk  --}}
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <input id="product_code" type="hidden" class="form-control" name="product_code"
+                                                value="{{ $item[0]->product_code }}" required autocomplete="product_code">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Kolom btn,img  --}}
+
+                                <div class="col row d-block">
+                                    <div class="col d-flex justify-content-center mb-2">
+
+                                        <img src="https://via.placeholder.com/240x240/777.png/fff?text=240x240"
+                                            alt="" class="border rounded-2 border-0" width="240" height="240">
+                                    </div>
+
+                                    <div class="row mt-2 col">
+                                        <div class="col-md-12 d-flex">
+                                            <button type="submit" class="btn btn-lg btn-dark w-100">
+                                                {{ __('Checkout') }}
+                                            </button>
+                                        </div>
+                                        {{-- <div class="col-md-6 offset-md-4">
+                                        </div> --}}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="product_desc"
-                                    class="col-md-2 col-form-label text-md-end">{{ __('Catatan Produk') }}</label>
 
-                                <div class="col-md-6">
-                                    <textarea id="product_desc" class="form-control @error('product_desc', $item->product_desc) is-invalid @enderror"
-                                        name="product_desc" required autocomplete="product_desc" autofocus>{{ old('product_desc', $item->product_desc) }}</textarea>
-
-                                    @error('product_desc', $item->product_desc)
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="product_price"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Harga Produk') }}<small
-                                        class="text-secondary"> * /unit</small></label>
-
-                                <div class="col-md-6">
-                                    <input id="product_price" type="number"
-                                        class="form-control @error('product_price') is-invalid @enderror"
-                                        name="product_price" value="{{ old('product_price', $item->product_price) }}"
-                                        required autocomplete="product_price">
-
-                                    @error('product_price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="product_stock"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Stock Produk') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="product_stock" type="number"
-                                        class="form-control @error('product_stock') is-invalid @enderror"
-                                        name="product_stock" value="{{ old('product_stock', $item->product_stock) }}"
-                                        required autocomplete="product_stock">
-
-                                    @error('product_stock')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="reset" class="btn btn-outline-danger me-1">
-                                        {{ __('Reset') }}
-                                    </button>
-                                    <button type="submit" class="btn btn-dark ms-1">
-                                        {{ __('Daftar Ulang') }}
-                                    </button>
-                                </div>
-                                {{-- <div class="col-md-6 offset-md-4">
-                                </div> --}}
-                            </div>
                         </form>
                     </div>
                 </div>
