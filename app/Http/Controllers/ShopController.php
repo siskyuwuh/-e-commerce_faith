@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 use App\Models\Product as Item;
 use App\Models\Order;
-use App\Request\StoreRequest;
+// use App\Request\StoreRequest;
 use App\Http\Requests\OrderProductRequest;
+use App\Http\Requests\StoreRequest as RequestsStoreRequest;
 use Illuminate\Support\Str;
 
 class ShopController extends Controller
@@ -100,7 +101,7 @@ class ShopController extends Controller
         );
     }
 
-    public function adminCheckOrder(Order $order)
+    public function adminOrderList(Order $order)
     {
         return view('admin.CheckOrder.index', [
             'title' => 'Check Order',
@@ -108,9 +109,34 @@ class ShopController extends Controller
         ]);
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     //
+    public function adminConfirmationShow(Order $order, Item $item, $id)
+    {
+        $order = $order->find($id);
+        return view('admin.CheckOrder.edit', [
+            'title' => 'Confirmation',
+            'orders' => $order,
+            'item' => $item->where('product_code', $order->product_code)->first(),
+        ]);
+    }
+
+    public function adminConfirmation(RequestsStoreRequest $request, Order $order,  $id)
+    {
+
+        $this->validate($request, [
+            'status' => ['required'],
+        ]);
+
+        $order = $order->find($id);
+
+        $order->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('order.list')->with(
+            'success',
+            'Your order has been added'
+        );
+    }
     //     $this->validate($request, [
     //         'product_name' => ['required', 'string', 'max:255'],
     //         'product_desc' => ['required', 'string', 'min:50'],

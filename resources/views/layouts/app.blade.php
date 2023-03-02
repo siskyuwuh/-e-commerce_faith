@@ -64,6 +64,11 @@
                                     {{ request()->is('admin/product') || request()->is('admin/product/create') ? 'aria-current="page"' : '' }}
                                     href="{{ route('product.index') }}">{{ __('Product') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->is('admin/order') ? 'active' : '' }}"
+                                    {{ request()->is('admin/order') ? 'aria-current="page"' : '' }}
+                                    href="{{ route('order.list') }}">{{ __('Order') }}</a>
+                            </li>
                             {{-- <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/product/index') ? 'active' : '' }}"
                                     {{ request()->is('admin/product/index') ? 'aria-current="page"' : '' }}

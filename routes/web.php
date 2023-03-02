@@ -55,7 +55,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('/admin/product', ProductController::class);
-    Route::get('/admin/order', [ShopController::class, 'adminCheckOrder'])->name('order.list');
+    Route::get('/admin/order', [ShopController::class, 'adminOrderList'])->name('order.list');
+    Route::get('/admin/order/{id}/check', [ShopController::class, 'adminConfirmationShow'])->name('order.check');
+    Route::put('/admin/order/{uuid_code}/update', [ShopController::class, 'adminConfirmation'])->name('order.update');
     // Route::get('/admin/product', [ProductController::class, 'index'])->name('admin.product.table');
     // Route::get('/admin/product/{id}/show', [ProductController::class, 'show'])->name('admin.product.show');
     // Route::get('/admin/product/create', [ProductController::class, 'create'])->name('admin.product.create');

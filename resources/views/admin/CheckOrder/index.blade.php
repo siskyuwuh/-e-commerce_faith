@@ -28,7 +28,7 @@
                                 <td>Rp{{ number_format($order->total_harga, 2) }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
-                                    @if ($order->status === 'waitConfirmation')
+                                    @if ($order->status === 'Pending')
                                         <p class="btn btn-warning fw-bold">
                                             {{ $order->status }}
                                         </p>
@@ -45,7 +45,7 @@
                                 <td class="text-center">
                                     {{-- <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                         action="{{ route('product.destroy', $product->id) }}" method="POST" class="d-flex"> --}}
-                                    <a href="{{-- route('order.show',$order->uuid_code) --}}" class="btn btn-sm btn-dark mx-1"><i
+                                    <a href="{{ route('order.check', $order->id) }}" class="btn btn-sm btn-dark mx-1"><i
                                             class="fa fa-eye"></i></a>
                                     {{-- <a href="{{ route('product.edit', $product->id) }}"
                                             class="btn btn-sm btn-primary mx-1"><i class="fa fa-pencil-alt"></i></a>

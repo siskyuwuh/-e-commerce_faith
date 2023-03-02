@@ -4,114 +4,73 @@
     <div class="container">
         <div class="row justify-content-center my-3">
             <div class="col-md-8">
-                <a href="{{ url('admin/product') }}">
+                <a href="{{ url('admin/order') }}">
                     <button class="btn btn-primary">{{ __('Kembali') }}</button>
                 </a>
             </div>
         </div>
         <div class="row justify-content-center my-3">
-            <div class="col-md-8">
+            <div class="col-md-8 my-2">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Data Barang') }}</div>
+                    {{-- <img src="..." class="card-img-top" alt="..."> --}}
+                    <div class="card-header">
+                        Detail Barang
+                    </div>
+                    <div class="card-body row">
+                        {{-- <h5 class="card-title">Card title</h5> --}}
+                        {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p> --}}
+                        <div class="col-md-9">
+
+                            <p>{{ $item->product_name }}</p>
+                            <p>{{ $item->product_desc }}</p>
+                            <p>Rp {{ number_format($item->product_price) }}</p>
+                            <p>{{ $item->product_code }}</p>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <img src="https://via.placeholder.com/144x144/777.png/fff?text=144x144" alt=""
+                                class="rounded-2" width="144" height="144">
+                        </div>
+
+
+                        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 my-2">
+                <div class="card">
+                    <div class="card-header">{{ __('Konfirmasi Pesanan') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('product.update', $product->id) }}">
+                        {{-- <img src="https://via.placeholder.com/240x240/777.png/fff?text=240x240" alt=""
+                            class="" width="240" height="240"> --}}
+                        <form method="POST" action="{{ route('order.update', $orders->id) }}">
                             @csrf
                             @method('PUT')
-                            <div class="row mb-3">
-                                <label for="product_name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Nama Produk') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="product_name" type="text"
-                                        class="form-control @error('product_name') is-invalid @enderror" name="product_name"
-                                        value="{{ old('product_name', $product->product_name) }}" required
-                                        autocomplete="product_name" autofocus>
+                            <p>{{ $orders->uuid_code }}</p>
+                            <p>{{ $orders->address }}</p>
+                            <p>Rp {{ number_format($orders->total_harga) }}</p>
+                            <p>{{ $orders->created_at }}</p>
 
-                                    @error('product_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="product_name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Kode Produk') }}</label>
+                            <select class="form-select" aria-label="Default select example" name="status">
+                                <option selected>{{ $orders->status }}</option>
+                                @if ($orders->status === 'Pending')
+                                    <option value="Rejected">Reject</option>
+                                    <option value="Confirmed">Confirm</option>
+                                @elseif($orders->status === 'Confirmed')
+                                    <option value="Rejected">Reject</option>
+                                    <option value="Pending">Wait for Confirmation</option>
+                                @elseif($orders->status === 'Rejected')
+                                    <option value="Confirmed">Confirm</option>
+                                    <option value="Pending">Wait for Confirmation</option>
+                                @endif
+                            </select>
 
-                                <div class="col-md-6">
-                                    <input id="product_code" type="text"
-                                        class="form-control @error('product_code') is-invalid @enderror" name="product_code"
-                                        value="{{ old('product_code', $product->product_code) }}" required
-                                        autocomplete="product_code" autofocus>
-
-                                    @error('product_code')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="product_desc"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Deskripsi Produk') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea id="product_desc" class="form-control @error('product_desc', $product->product_desc) is-invalid @enderror"
-                                        name="product_desc" required autocomplete="product_desc" autofocus>{{ old('product_desc', $product->product_desc) }}</textarea>
-
-                                    @error('product_desc', $product->product_desc)
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="product_price"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Harga Produk') }}<small
-                                        class="text-secondary"> * /unit</small></label>
-
-                                <div class="col-md-6">
-                                    <input id="product_price" type="number"
-                                        class="form-control @error('product_price') is-invalid @enderror"
-                                        name="product_price" value="{{ old('product_price', $product->product_price) }}"
-                                        required autocomplete="product_price">
-
-                                    @error('product_price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="product_stock"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Stock Produk') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="product_stock" type="number"
-                                        class="form-control @error('product_stock') is-invalid @enderror"
-                                        name="product_stock" value="{{ old('product_stock', $product->product_stock) }}"
-                                        required autocomplete="product_stock">
-
-                                    @error('product_stock')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="reset" class="btn btn-outline-danger me-1">
-                                        {{ __('Reset') }}
-                                    </button>
-                                    <button type="submit" class="btn btn-dark ms-1">
-                                        {{ __('Daftar Ulang') }}
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-dark w-100">
+                                        {{ __('Submit') }}
                                     </button>
                                 </div>
                                 {{-- <div class="col-md-6 offset-md-4">
