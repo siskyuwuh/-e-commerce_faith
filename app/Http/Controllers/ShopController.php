@@ -8,6 +8,7 @@ use App\Models\Order;
 // use App\Request\StoreRequest;
 use App\Http\Requests\OrderProductRequest;
 use App\Http\Requests\StoreRequest as RequestsStoreRequest;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class ShopController extends Controller
@@ -22,7 +23,7 @@ class ShopController extends Controller
         //
         return view('shop.catalog', [
             'title' => 'Shop',
-            'items' => Item::latest()->paginate(8)->withQueryString(),
+            'items' => Item::latest()->paginate(12)->withQueryString(),
 
         ]);
     }
@@ -76,6 +77,7 @@ class ShopController extends Controller
 
         $basePrice = $item->where('product_code', $product_code)->get();
 
+
         $this->validate($request, [
             'product_code' => ['required'],
             'order_note' => ['required', 'string'],
@@ -88,11 +90,12 @@ class ShopController extends Controller
 
         Order::create([
             'product_code' => $request->product_code,
+            'user_id' => auth()->user()->id,
             'uuid_code' => Str::orderedUuid(),
             'order_note' => $request->order_note,
             'address' => $request->address,
             'total_harga' => $basePrice[0]->product_price,
-            'status' => 'waitConfirmation',
+            'status' => 'Pending',
         ]);
 
         return redirect()->route('shop')->with(
@@ -109,13 +112,16 @@ class ShopController extends Controller
         ]);
     }
 
-    public function adminConfirmationShow(Order $order, Item $item, $id)
+    public function adminConfirmationShow(Order $order, Item $item, User $user, $id)
     {
-        $order = $order->find($id);
+        $orders = $order->find($id);
+        $items = $item->where('product_code', $orders->product_code)->first();
+        $users = $user->where("id", $orders->user_id)->first();
         return view('admin.CheckOrder.edit', [
             'title' => 'Confirmation',
-            'orders' => $order,
-            'item' => $item->where('product_code', $order->product_code)->first(),
+            'orders' => $orders,
+            'items' => $items,
+            'users' => $users,
         ]);
     }
 

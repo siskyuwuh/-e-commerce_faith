@@ -22,10 +22,10 @@
                             card's content.</p> --}}
                         <div class="col-md-9">
 
-                            <p>{{ $item->product_name }}</p>
-                            <p>{{ $item->product_desc }}</p>
-                            <p>Rp {{ number_format($item->product_price) }}</p>
-                            <p>{{ $item->product_code }}</p>
+                            <p>{{ $items->product_name }}</p>
+                            <p>{{ $items->product_desc }}</p>
+                            <p>Rp {{ number_format($items->product_price) }}</p>
+                            <p>{{ $items->product_code }}</p>
                         </div>
                         <div class="col d-flex justify-content-end">
                             <img src="https://via.placeholder.com/144x144/777.png/fff?text=144x144" alt=""
@@ -48,8 +48,11 @@
                             @csrf
                             @method('PUT')
 
+                            <p>{{ $users->email }}</p>
+                            <p>{{ $users->username }}</p>
                             <p>{{ $orders->uuid_code }}</p>
                             <p>{{ $orders->address }}</p>
+                            <p>{{ $orders->order_note }}</p>
                             <p>Rp {{ number_format($orders->total_harga) }}</p>
                             <p>{{ $orders->created_at }}</p>
 

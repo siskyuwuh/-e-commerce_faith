@@ -6,8 +6,8 @@
             <div class="col-md-10">
                 <div class="row justify-content-start">
                     @foreach ($items as $item)
-                        <div class="col-md-3 my-3">
-                            <div class="card" style="width: 15rem;">
+                        <div class="col-md-2 my-2">
+                            <div class="card" style="width: 14rem;">
                                 <img src="https://via.placeholder.com/188x188/777.png/fff?text=188x188" class="card-img-top"
                                     alt="...">
                                 <div class="card-body">

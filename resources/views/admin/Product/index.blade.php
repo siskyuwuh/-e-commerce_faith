@@ -16,7 +16,6 @@
                         <tr class="table-dark">
                             <th scope="col">Code</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Description</th>
                             <th scope="col">Price <small>/unit</small></th>
                             <th scope="col">Stock</th>
                             <th scope="col">Action</th>
@@ -28,7 +27,6 @@
 
                                 <td>{{ $product->product_code }}</td>
                                 <td>{{ $product->product_name }}</td>
-                                <td>{{ $product->product_desc }}</td>
                                 <td>Rp{{ number_format($product->product_price, 2) }}</td>
                                 <td>{{ $product->product_stock }}</td>
                                 <td class="text-center">

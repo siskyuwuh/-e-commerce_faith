@@ -7,27 +7,23 @@
                 <table class="table">
                     <thead>
                         <tr class="table-dark">
-                            <th scope="col">Kode Pembelian</th>
-                            <th scope="col">Kode Produk</th>
-                            <th scope="col">Note Pembeli</th>
-                            <th scope="col">Alamat Pembeli</th>
-                            <th scope="col">Total Harga</th>
-                            <th scope="col">Pada Tanggal</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Detail</th>
+                            <th scope="col" class="text-center">Kode Pembelian</th>
+                            <th scope="col" class="text-center">Kode Produk</th>
+                            <th scope="col" class="text-center">Total Harga</th>
+                            <th scope="col" class="text-center">Pada Tanggal</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
-                            <tr>
+                            <tr class="text-center">
 
                                 <td>{{ $order->uuid_code }}</td>
                                 <td>{{ $order->product_code }}</td>
-                                <td>{{ $order->order_note }}</td>
-                                <td>{{ $order->address }}</td>
                                 <td>Rp{{ number_format($order->total_harga, 2) }}</td>
                                 <td>{{ $order->created_at }}</td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     @if ($order->status === 'Pending')
                                         <p class="btn btn-warning fw-bold">
                                             {{ $order->status }}

@@ -23,7 +23,7 @@ class ProductController extends Controller
         // $products = Product::latest()->paginate(5)->withQueryString();
         return view('admin.product.index', [
             'products' => Product::latest()
-                ->paginate(5)
+                ->paginate(15)
                 ->withQueryString(),
         ]);
     }
