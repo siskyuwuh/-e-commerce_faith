@@ -80,7 +80,6 @@ class ShopController extends Controller
 
         $this->validate($request, [
             'product_code' => ['required'],
-            'order_note' => ['required', 'string'],
             'address' => ['required'],
         ]);
 
@@ -100,7 +99,7 @@ class ShopController extends Controller
 
         return redirect()->route('shop')->with(
             'success',
-            'Your order has been added'
+            'Transaksi anda berhasil!'
         );
     }
 
@@ -140,7 +139,7 @@ class ShopController extends Controller
 
         return redirect()->route('order.list')->with(
             'success',
-            'Your order has been added'
+            'Transaksi berhasil diubah!'
         );
     }
     //     $this->validate($request, [

@@ -130,7 +130,7 @@ class ProductController extends Controller
         return redirect()
             ->route('product.index')
             ->with([
-                'success' => 'Data berhasil disimpan',
+                'success' => 'Data berhasil diubah!',
             ]);
     }
 

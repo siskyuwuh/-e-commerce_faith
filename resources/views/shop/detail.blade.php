@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-center mb-3">
 
-                                <img src="https://via.placeholder.com/500x500/777.png/fff?text=500x500" alt="">
+                                {{-- <img src="https://via.placeholder.com/500x500/777.png/fff?text=500x500" alt=""> --}}
                             </div>
 
                             <div>

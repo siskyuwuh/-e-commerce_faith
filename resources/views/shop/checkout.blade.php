@@ -2,13 +2,7 @@
 
 @section('content')
     <div class="container">
-        {{-- <div class="row justify-content-center my-3">
-            <div class="col-md-8">
-                <a href="{{ url('admin/product') }}">
-                    <button class="btn btn-primary">{{ __('Kembali') }}</button>
-                </a>
-            </div>
-        </div> --}}
+
         <div class="row justify-content-center my-5">
             <div class="col-md-12">
                 <div class="card">
@@ -39,7 +33,7 @@
                                             class="col-md-2 col-form-label">{{ __('Catatan Produk') }}</label>
 
                                         <div class="col-md-10">
-                                            <textarea id="order_note" class="form-control" name="order_note" required autocomplete="order_note" autofocus></textarea>
+                                            <textarea id="order_note" class="form-control" name="order_note" autocomplete="order_note" autofocus></textarea>
                                         </div>
                                     </div>
 
@@ -65,8 +59,7 @@
                                                 <span
                                                     class="form-control">{{ number_format($item[0]->product_price) }}</span>
                                             </div>
-                                            {{-- <input id="harga_total" type="hidden" value="{{ $item[0]->product_price }}"
-                                                required autocomplete="harga_total" name="harga_total"> --}}
+
                                         </div>
                                     </div>
 

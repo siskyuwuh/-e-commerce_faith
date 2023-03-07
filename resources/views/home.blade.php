@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Home') }}</div>
-                    
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -21,8 +21,9 @@
         </div>
     </div> --}}
     {{-- @yield('carousel') --}}
-    <div class="banner mb-3">
-        <img src="https://via.placeholder.com/1440x563/777.png/fff?text=1440x563" class="d-block w-100">
+    <div class="banner w-100 mb-3 d-flex justify-content-center">
+        {{-- <img src="https://via.placeholder.com/1440x563/777.png/fff?text=1440x563" class="d-block w-100"> --}}
+        <img src="L5290-(3).jpg" class="" style="background-size: cover"  height="563">
     </div>
 
     <div id="carouselExampleIndicators" class="carousel slide my-3">
@@ -44,11 +45,15 @@
 
                     padding: 0px 16px;
                     gap: 16px;">
-                    <img src="https://via.placeholder.com/480x560/777.png/fff?text=480x560" class=""
+                    {{-- <img src="https://via.placeholder.com/480x560/777.png/fff?text=480x560" class=""
+                        style="flex: none;
+                    order: 0;
+                    flex-grow: 0;"> --}}
+                    <img src="EpsonL121InkTankPrinter-a_2048x2048.png" class=""
                         style="flex: none;
                     order: 0;
                     flex-grow: 0;">
-                    <img src="https://via.placeholder.com/800x560/777.png/fff?text=880x560" class=""
+                    <img src="19Cav_FDL_White_04_2.png" class=""
                         style="
                     flex: none;
                     order: 1;
@@ -179,19 +184,18 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll
-                        blow your mind.</span></h2>
-                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
-                    here.</p>
+                <h2 class="featurette-heading fw-normal lh-1">Selamat Datang <span class="text-muted">di toko printer kami!.</span></h2>
+                <p class="lead">Kami adalah toko online yang menyediakan berbagai macam printer dan aksesoris printer dengan harga yang terjangkau.</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                {{-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
                         dy=".3em">500x500</text>
-                </svg>
+                </svg> --}}
+                <img src="l850jpg-20211224123259.jpg" alt="">
             </div>
         </div>
 
@@ -199,44 +203,20 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for
-                        yourself.</span></h2>
-                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how
-                    this layout would work with some actual real-world content in place.</p>
+                <h2 class="featurette-heading fw-normal lh-1">Produk Berkualitas <span class="text-muted">dan Pelayanan yang Baik.</span></h2>
+                <p class="lead">Kami berkomitmen untuk memberikan produk berkualitas tinggi dan pelayanan yang baik kepada pelanggan kami.</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                {{-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%"
                         fill="#aaa" dy=".3em">500x500</text>
-                </svg>
+                </svg> --}}
+                <img src="AB758317.jpg" alt="">
             </div>
         </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span
-                        class="text-muted">Checkmate.</span></h2>
-                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-                    intended to be actually read, simply here to give you a better view of what this would look like with
-                    some actual content. Your content.</p>
-            </div>
-            <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%"
-                        fill="#aaa" dy=".3em">500x500</text>
-                </svg>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
 
         <!-- /END THE FEATURETTES -->
 
